@@ -1,95 +1,44 @@
 package controleEstoque;
-
 import java.util.Scanner;
+
 
 public class Aplicacao {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        Item[] vet = new Item[5];
+        vet[0] = new RoupaPMG("Calcas de varios tamanhos!", 10, 10, 10, 5, 30);
+        vet[1] = new RoupaTamanhoUnico("Camisas de tamanho unico!", 10, 5, 10);
+        vet[2] = new Acessorio("Relogios prateados!", 5, 5, 10);
+        vet[3] = new Acessorio("Correntes finas!", 5, 5, 10);
+        vet[4] = new Acessorio("Brincos de ouro!", 5, 5, 10);
 
-		Item[] vet = new Item[5];
+        Scanner scan = new Scanner(System.in);
 
-		vet[0] = new RoupaPMG("Calças de vários tamanhos!", 10, 10, 10, 5, 30);
-		vet[1] = new RoupaTamanhoUnico("Camisas de tamanho único!", 10, 5, 10);
-		vet[2] = new Acessorio("Relógios prateados!", 5, 5, 10);
-		vet[3] = new Acessorio("Correntes finas!", 5, 5, 10);
-		vet[4] = new Acessorio("Brincos de ouro!", 5, 5, 10);
+        System.out.print(" 0 - Calca tamanho variavel\n" + " 1 - Camisa tamanho unico\n" + " 2 - Relogio\n"
+                + " 3 - Corrente fina\n" + " 4 - Brinco de Ouro\n" + " 5 - Para sair do sistema\n" + "\n Opcao escolhida: ");
 
-		Scanner scan = new Scanner(System.in);
+        int opc = scan.nextInt();
 
-		System.out.print(" 0 - Calça tamanho variável\n" + " 1 - Camisa tamanho único\n" + " 2 - Relógio\n"
-				+ " 3 - Corrente fina\n" + " 4 - Brinco de Ouro\n" + " 5 - Para sair do sistema\n" + "\n Opção escolhida: ");
+        while (opc != 5) {
+            if (opc >= 0 && opc < vet.length) {
+                Command command = new VendaCommand(vet[opc]);
+                command.execute();
+            } else {
+                System.out.println("\nEscolha uma opÃ§Ã£o vÃ¡lida!");
+            }
 
-		int opc = scan.nextInt();
+            System.out.print("\n0 - Calca tamanho variavel\n" + "1 - Camisa tamanho unico\n" + "2 - RelÃ³gio\n"
+                    + "3 - Corrente\n" + "4 - Brinco\n" + "5 - Sair do sistema\n" + "\nOpcao escolhida: ");
+            opc = scan.nextInt();
+        }
 
-		do {
-			switch (opc) {
-			case 0:
-				vet[0].venda();
-				vet[0].reposicaoEstoque();
-				System.out.println("\nAção efetuada!");
-				System.out.print("\n0 – Calça tamanho variável\n" + "1 – Camisa tamanho único\n" + "2 – Relógio\n"
-						+ "3 – Corrente\n" + "4 – Brinco\n" + "5 – Sair do sistema\n" + "\nOpção escolhida: ");
-				opc = scan.nextInt();
-				break;
-			case 1:
-				vet[1].venda();
-				vet[1].reposicaoEstoque();
-				System.out.println("\nAção efetuada!");
-				System.out.print("\n0 – Calça tamanho variável\n" + "1 – Camisa tamanho único\n" + "2 – Relógio\n"
-						+ "3 – Corrente\n" + "4 – Brinco\n" + "5 – Sair do sistema\n" + "\nOpção escolhida: ");
-				opc = scan.nextInt();
-				break;
-			case 2:
-				vet[2].venda();
-				vet[2].reposicaoEstoque();
-				System.out.println("\nAção efetuada!");
-				System.out.print("\n0 – Calça tamanho variável\n" + "1 – Camisa tamanho único\n" + "2 – Relógio\n"
-						+ "3 – Corrente\n" + "4 – Brinco\n" + "5 – Sair do sistema\n" + "\nOpção escolhida: ");
-				opc = scan.nextInt();
-				break;
-			case 3:
-				vet[3].venda();
-				vet[3].reposicaoEstoque();
-				System.out.println("\nAção efetuada!");
-				System.out.print("\n0 – Calça tamanho variável\n" + "1 – Camisa tamanho único\n" + "2 – Relógio\n"
-						+ "3 – Corrente\n" + "4 – Brinco\n" + "5 – Sair do sistema\n" + "\nOpção escolhida: ");
-				opc = scan.nextInt();
-				break;
-			case 4:
-				vet[4].venda();
-				vet[4].reposicaoEstoque();
-				System.out.println("\nAção efetuada!");
-				System.out.print("\n0 – Calça tamanho variável\n" + "1 – Camisa tamanho único\n" + "2 – Relógio\n"
-						+ "3 – Corrente\n" + "4 – Brinco\n" + "5 – Sair do sistema\n" + "\nOpção escolhida: ");
-				opc = scan.nextInt();
-				break;
-			case 5:
-				System.out.println("\nCalças de tamanho variável: " + vet[0].getQuantidade() +" Unidades");
-				System.out.println("Camisas tamanho único: " + vet[1].getQuantidade()+" Unidades");
-				System.out.println("Relógios: " + vet[2].getQuantidade()+" Unidades");
-				System.out.println("Correntes: " + vet[3].getQuantidade()+" Unidades");
-				System.out.println("Brincos: " + vet[4].getQuantidade()+" Unidades");
-				System.out.println("\nVocê saiu do sistema!");
-				System.exit(0);				
-				break;
-			default:
-				System.out.println("\nEscolha uma opção válida!");
-				System.out.print("\n0 – Calça tamanho variável\n" + "1 – Camisa tamanho único\n" + "2 – Relógio\n"
-						+ "3 – Corrente\n" + "4 – Brinco\n" + "5 – Sair do sistema\n" + "\nOpção escolhida: ");
-				opc = scan.nextInt();
-				break;
-			}
+        System.out.println("\nCalcas de tamanho variavel: " + vet[0].getQuantidade() + " Unidades");
+        System.out.println("Camisas tamanho unico: " + vet[1].getQuantidade() + " Unidades");
+        System.out.println("Relogios: " + vet[2].getQuantidade() + " Unidades");
+        System.out.println("Correntes: " + vet[3].getQuantidade() + " Unidades");
+        System.out.println("Brincos: " + vet[4].getQuantidade() + " Unidades");
 
-		} while (opc != 5);
-
-		System.out.println("\nCalças de tamanho variável: " + vet[0].getQuantidade() +" Unidades");
-		System.out.println("Camisas tamanho único: " + vet[1].getQuantidade()+" Unidades");
-		System.out.println("Relógios: " + vet[2].getQuantidade()+" Unidades");
-		System.out.println("Correntes: " + vet[3].getQuantidade()+" Unidades");
-		System.out.println("Brincos: " + vet[4].getQuantidade()+" Unidades");
-
-		System.out.println("\nVocê saiu do sistema!");
-		scan.close();
-	}
+        System.out.println("\nVoce saiu do sistema!");
+        scan.close();
+    }
 }
-
