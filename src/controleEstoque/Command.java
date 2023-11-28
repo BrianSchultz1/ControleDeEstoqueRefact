@@ -1,5 +1,5 @@
 package controleEstoque;
 
 interface Command {
- void execute();
+ void execute(Item i);
 }

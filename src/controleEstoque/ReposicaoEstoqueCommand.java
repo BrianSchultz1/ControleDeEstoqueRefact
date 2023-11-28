@@ -1,10 +1,10 @@
 package controleEstoque;
 
-class VendaCommand implements Command {
+class ReposicaoEstoqueCommand implements Command {
 
 
     @Override
     public void execute(Item item) {
-        item.venda();
+        item.reposicaoEstoque();
     }
 }
